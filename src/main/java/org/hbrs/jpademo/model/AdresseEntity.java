@@ -8,22 +8,16 @@ import java.util.Objects;
 @Table(name = "adresse", schema = "public", catalog = "dstegl2s")
 public class AdresseEntity {
     @Id
-    @Basic
     @Column(name = "adresse_id")
     private int adresseId;
-    @Basic
     @Column(name = "strasse")
     private String strasse;
-    @Basic
     @Column(name = "hausnr")
     private String hausnr;
-    @Basic
     @Column(name = "plz")
     private String plz;
-    @Basic
     @Column(name = "ort")
     private String ort;
-    @Basic
     @Column(name = "person_id")
     private Integer personId;
 

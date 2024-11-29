@@ -1,19 +1,21 @@
 package org.hbrs.jpademo.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 import java.util.Objects;
 
 @Entity
-@jakarta.persistence.Table(name = "unterrichtet", schema = "public", catalog = "dstegl2s")
+@Table(name = "unterrichtet", schema = "public", catalog = "dstegl2s")
 public class UnterrichtetEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    @jakarta.persistence.Column(name = "lehrer")
+    @Column(name = "lehrer")
     private int lehrer;
+
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @Column(name = "fach")
+    private int fach;
 
     public int getLehrer() {
         return lehrer;
@@ -22,11 +24,6 @@ public class UnterrichtetEntity {
     public void setLehrer(int lehrer) {
         this.lehrer = lehrer;
     }
-
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    @jakarta.persistence.Column(name = "fach")
-    private int fach;
 
     public int getFach() {
         return fach;

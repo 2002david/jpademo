@@ -9,13 +9,10 @@ import java.util.Objects;
 @Table(name = "schueler", schema = "public", catalog = "dstegl2s")
 public class SchuelerEntity {
     @Id
-    @Basic
     @Column(name = "person_id")
     private int personId;
-    @Basic
     @Column(name = "einschulungsjahr")
     private Date einschulungsjahr;
-    @Basic
     @Column(name = "klasse")
     private String klasse;
 

@@ -3,7 +3,6 @@ package org.hbrs.jpademo.dao;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
-import org.hbrs.jpademo.model.AdresseEntity;
 import org.hbrs.jpademo.model.PersonEntity;
 
 public class PersonDAO {

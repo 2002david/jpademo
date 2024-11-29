@@ -8,10 +8,8 @@ import java.util.Objects;
 @Table(name = "klasse", schema = "public", catalog = "dstegl2s")
 public class KlasseEntity {
     @Id
-    @Basic
     @Column(name = "klassenname")
     private String klassenname;
-    @Basic
     @Column(name = "klassenlehrer")
     private Integer klassenlehrer;
 

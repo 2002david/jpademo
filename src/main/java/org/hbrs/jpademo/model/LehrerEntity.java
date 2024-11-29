@@ -9,10 +9,8 @@ import java.util.Objects;
 @Table(name = "lehrer", schema = "public", catalog = "dstegl2s")
 public class LehrerEntity {
     @Id
-    @Basic
     @Column(name = "person_id")
     private int personId;
-    @Basic
     @Column(name = "gehalt")
     private BigDecimal gehalt;
 

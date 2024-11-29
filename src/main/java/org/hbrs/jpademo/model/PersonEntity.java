@@ -9,16 +9,12 @@ import java.util.Objects;
 @Table(name = "person", schema = "public", catalog = "dstegl2s")
 public class PersonEntity {
     @Id
-    @Basic
     @Column(name = "person_id")
     private int personId;
-    @Basic
     @Column(name = "vorname")
     private String vorname;
-    @Basic
     @Column(name = "nachname")
     private String nachname;
-    @Basic
     @Column(name = "geburtsdatum")
     private Date geburtsdatum;
 
