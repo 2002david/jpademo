@@ -11,7 +11,7 @@ public class SchuelerEntity {
 
     @Id
     @OneToOne
-    private PersonEntity personId;
+    private PersonEntity person;
 
     @Column(name = "einschulungsjahr")
     private Date einschulungsjahr;
@@ -32,11 +32,11 @@ public class SchuelerEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         SchuelerEntity that = (SchuelerEntity) o;
-        return personId == that.personId && Objects.equals(einschulungsjahr, that.einschulungsjahr) && Objects.equals(klasse, that.klasse);
+        return person == that.person && Objects.equals(einschulungsjahr, that.einschulungsjahr) && Objects.equals(klasse, that.klasse);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(personId, einschulungsjahr, klasse);
+        return Objects.hash(person, einschulungsjahr, klasse);
     }
 }

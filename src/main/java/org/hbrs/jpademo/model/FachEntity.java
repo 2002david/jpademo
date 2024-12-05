@@ -11,7 +11,7 @@ public class FachEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "fach_id")
+    @Column(name = "id")
     private int fachId;
 
     @Column(name = "fachname")

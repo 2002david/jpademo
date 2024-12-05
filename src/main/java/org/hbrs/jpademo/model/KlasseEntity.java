@@ -11,7 +11,7 @@ public class KlasseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "klasse_id")
+    @Column(name = "id")
     private int klassenId;
 
     @Column(name = "klassenname")
