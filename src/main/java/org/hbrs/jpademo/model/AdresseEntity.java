@@ -26,8 +26,7 @@ public class AdresseEntity {
     @Column(name = "ort")
     private String ort;
 
-    @OneToMany
-    @Column(name = "person_id")
+    @OneToMany(mappedBy = "personId")
     private List<PersonEntity> personId;
 
     public int getAdresseId() {

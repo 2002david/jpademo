@@ -24,7 +24,6 @@ public class KlasseEntity {
     private LehrerEntity lehrer;
 
     @OneToMany
-    @Column(name = "schueler")
     private List<SchuelerEntity> schueler;
 
     public String getKlassenname() {
