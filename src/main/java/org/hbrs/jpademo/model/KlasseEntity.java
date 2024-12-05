@@ -17,9 +17,6 @@ public class KlasseEntity {
     @Column(name = "klassenname")
     private String klassenname;
 
-    @Column(name = "klassenlehrer")
-    private Integer klassenlehrer;
-
     @OneToOne
     private LehrerEntity lehrer;
 
@@ -34,12 +31,12 @@ public class KlasseEntity {
         this.klassenname = klassenname;
     }
 
-    public Integer getKlassenlehrer() {
-        return klassenlehrer;
+    public LehrerEntity getKlassenlehrer() {
+        return lehrer;
     }
 
-    public void setKlassenlehrer(Integer klassenlehrer) {
-        this.klassenlehrer = klassenlehrer;
+    public void setKlassenlehrer(LehrerEntity klassenlehrer) {
+        this.lehrer = klassenlehrer;
     }
 
     @Override
@@ -47,11 +44,11 @@ public class KlasseEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         KlasseEntity that = (KlasseEntity) o;
-        return Objects.equals(klassenname, that.klassenname) && Objects.equals(klassenlehrer, that.klassenlehrer);
+        return Objects.equals(klassenname, that.klassenname) && Objects.equals(lehrer, that.lehrer);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(klassenname, klassenlehrer);
+        return Objects.hash(klassenname, lehrer);
     }
 }
