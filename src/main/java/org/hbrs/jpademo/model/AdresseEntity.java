@@ -10,7 +10,7 @@ import java.util.Objects;
 public class AdresseEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "adresse_id")
     private int adresseId;
 

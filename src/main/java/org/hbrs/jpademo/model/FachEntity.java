@@ -10,7 +10,7 @@ import java.util.Objects;
 public class FachEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "fach_id")
     private int fachId;
 

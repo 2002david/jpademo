@@ -11,9 +11,8 @@ import java.util.Objects;
 public class LehrerEntity {
 
     @Id
-    @PrimaryKeyJoinColumn
-    @Column(name = "person_id")
-    private int person;
+    @OneToOne
+    private PersonEntity person;
 
     @Column(name = "gehalt")
     private Double gehalt;

@@ -10,7 +10,7 @@ import java.util.Objects;
 public class KlasseEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "klasse_id")
     private int klassenId;
 
@@ -23,7 +23,7 @@ public class KlasseEntity {
     @OneToOne
     private LehrerEntity lehrer;
 
-    @OneToMany
+    @OneToMany(mappedBy = "klasse")
     private List<SchuelerEntity> schueler;
 
     public String getKlassenname() {
