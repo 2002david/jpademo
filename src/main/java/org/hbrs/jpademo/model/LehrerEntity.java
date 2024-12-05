@@ -23,7 +23,7 @@ public class LehrerEntity {
 
     @ManyToMany
     @Column(name = "faecher")
-    @JoinTable(name = "lehrer_fach",
+    @JoinTable(name = "unterrichtet_fach",
             joinColumns = @JoinColumn(name = "person_id"),
             inverseJoinColumns = @JoinColumn(name = "fach_id"))
     private List<FachEntity> faecher;

@@ -25,7 +25,6 @@ public class PersonEntity {
     private Date geburtsdatum;
 
     @ManyToOne
-    @JoinColumn(name = "adresse_id", referencedColumnName = "person_id")
     private AdresseEntity adresse;
 
     public int getPersonId() {
