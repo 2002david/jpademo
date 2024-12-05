@@ -7,11 +7,11 @@ import org.hbrs.jpademo.model.AdresseEntity;
 
 
 public class AdresseDAO {
-   private static final EntityManagerFactory emf;
+    private EntityManagerFactory emf;
 
-   static {
-       emf = Persistence.createEntityManagerFactory("jpademo");
-   }
+    public AdresseDAO() {
+        this.emf = Persistence.createEntityManagerFactory("jpademo");
+    }
 
    public void save(AdresseEntity adresse){
        EntityManager em = emf.createEntityManager();

@@ -9,15 +9,24 @@ import java.util.Objects;
 @Entity
 @Table(name = "person", schema = "public", catalog = "dstegl2s")
 public class PersonEntity {
+
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "person_id")
     private int personId;
+
     @Column(name = "vorname")
     private String vorname;
+
     @Column(name = "nachname")
     private String nachname;
+
     @Column(name = "geburtsdatum")
     private Date geburtsdatum;
+
+    @ManyToOne
+    @JoinColumn(name = "adresse_id", referencedColumnName = "person_id")
+    private AdresseEntity adresse;
 
     public int getPersonId() {
         return personId;

@@ -8,21 +8,27 @@ import java.util.Objects;
 @Entity
 @Table(name = "adresse", schema = "public", catalog = "dstegl2s")
 public class AdresseEntity {
+
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "adresse_id")
     private int adresseId;
+
     @Column(name = "strasse")
     private String strasse;
+
     @Column(name = "hausnr")
     private String hausnr;
+
     @Column(name = "plz")
     private String plz;
+
     @Column(name = "ort")
     private String ort;
+
+    @OneToMany
     @Column(name = "person_id")
-    private Integer personId;
-    @OneToOne
-    private List<PersonEntity> persons;
+    private List<PersonEntity> personId;
 
     public int getAdresseId() {
         return adresseId;
@@ -62,14 +68,6 @@ public class AdresseEntity {
 
     public void setOrt(String ort) {
         this.ort = ort;
-    }
-
-    public Integer getPersonId() {
-        return personId;
-    }
-
-    public void setPersonId(Integer personId) {
-        this.personId = personId;
     }
 
     @Override

@@ -8,14 +8,23 @@ import java.util.Objects;
 @Entity
 @Table(name = "klasse", schema = "public", catalog = "dstegl2s")
 public class KlasseEntity {
+
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "klasse_id")
+    private int klassenId;
+
     @Column(name = "klassenname")
     private String klassenname;
+
     @Column(name = "klassenlehrer")
     private Integer klassenlehrer;
-    @ManyToMany
-    private List<LehrerEntity> lehrer;
-    @ManyToOne
+
+    @OneToOne
+    private LehrerEntity lehrer;
+
+    @OneToMany
+    @Column(name = "schueler")
     private List<SchuelerEntity> schueler;
 
     public String getKlassenname() {

@@ -9,46 +9,31 @@ import java.util.Objects;
 @Entity
 @Table(name = "lehrer", schema = "public", catalog = "dstegl2s")
 public class LehrerEntity {
+
     @Id
+    @PrimaryKeyJoinColumn
     @Column(name = "person_id")
-    private int personId;
+    private int person;
+
     @Column(name = "gehalt")
-    private BigDecimal gehalt;
-    @OneToOne
-    private PersonEntity person;
+    private Double gehalt;
+
     @OneToOne
     private KlasseEntity klasse;
-    @ManyToMany(mappedBy = "unterrichtet_klassen")
-    private List<KlasseEntity> klassen;
+
     @ManyToMany
-    private List
+    @Column(name = "faecher")
+    @JoinTable(name = "lehrer_fach",
+            joinColumns = @JoinColumn(name = "person_id"),
+            inverseJoinColumns = @JoinColumn(name = "fach_id"))
+    private List<FachEntity> faecher;
 
-    public int getPersonId() {
-        return personId;
-    }
-
-    public void setPersonId(int personId) {
-        this.personId = personId;
-    }
-
-    public BigDecimal getGehalt() {
+    public Double getGehalt() {
         return gehalt;
     }
 
-    public void setGehalt(BigDecimal gehalt) {
+    public void setGehalt(Double gehalt) {
         this.gehalt = gehalt;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        LehrerEntity that = (LehrerEntity) o;
-        return personId == that.personId && Objects.equals(gehalt, that.gehalt);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(personId, gehalt);
-    }
 }

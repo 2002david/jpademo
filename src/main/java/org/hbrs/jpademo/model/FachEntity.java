@@ -2,17 +2,24 @@ package org.hbrs.jpademo.model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.Objects;
 
 @Entity
 @Table(name = "fach", schema = "public", catalog = "dstegl2s")
 public class FachEntity {
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "fach_id")
     private int fachId;
+
     @Column(name = "fachname")
     private String fachname;
+
+    @ManyToMany(mappedBy = "faecher")
+    @Column(name = "lehrer")
+    private List<LehrerEntity> lehrer;
 
     public int getFachId() {
         return fachId;

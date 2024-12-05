@@ -8,25 +8,16 @@ import java.util.Objects;
 @Entity
 @Table(name = "schueler", schema = "public", catalog = "dstegl2s")
 public class SchuelerEntity {
+
     @Id
-    @Column(name = "person_id")
-    private int personId;
+    @OneToOne
+    private PersonEntity personId;
+
     @Column(name = "einschulungsjahr")
     private Date einschulungsjahr;
-    @Column(name = "klasse")
-    private String klasse;
-    @OneToOne
-    private PersonEntity person;
-    @OneToMany
+
+    @ManyToOne
     private KlasseEntity klasse;
-
-    public int getPersonId() {
-        return personId;
-    }
-
-    public void setPersonId(int personId) {
-        this.personId = personId;
-    }
 
     public Date getEinschulungsjahr() {
         return einschulungsjahr;
@@ -34,14 +25,6 @@ public class SchuelerEntity {
 
     public void setEinschulungsjahr(Date einschulungsjahr) {
         this.einschulungsjahr = einschulungsjahr;
-    }
-
-    public String getKlasse() {
-        return klasse;
-    }
-
-    public void setKlasse(String klasse) {
-        this.klasse = klasse;
     }
 
     @Override

@@ -8,10 +8,10 @@ import org.hbrs.jpademo.model.FachEntity;
 
 public class FachDAO {
 
-    private static final EntityManagerFactory emf;
+    private EntityManagerFactory emf;
 
-    static {
-        emf = Persistence.createEntityManagerFactory("jpademo");
+    public FachDAO() {
+        this.emf = Persistence.createEntityManagerFactory("jpademo");
     }
 
     public void save(FachEntity adresse){
