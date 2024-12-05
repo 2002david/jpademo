@@ -17,8 +17,20 @@ public class KlasseEntity {
     @Column(name = "klassenname")
     private String klassenname;
 
+
+    @ManyToMany(mappedBy = "klassen")
+    @Column(name="lehrer")
+    private List<LehrerEntity> lehrer;
+
+    @ManyToMany
+    @Column(name = "faecher")
+    @JoinTable(name = "hat_faecher",
+        joinColumns = @JoinColumn(name ="klasse_id"),
+        inverseJoinColumns = @JoinColumn(name = "fach_id"))
+    private List<FachEntity> faecher;
+
     @OneToOne
-    private LehrerEntity lehrer;
+    private LehrerEntity klassenlehrer;
 
     @OneToMany(mappedBy = "klasse")
     private List<SchuelerEntity> schueler;
@@ -32,11 +44,11 @@ public class KlasseEntity {
     }
 
     public LehrerEntity getKlassenlehrer() {
-        return lehrer;
+        return klassenlehrer;
     }
 
     public void setKlassenlehrer(LehrerEntity klassenlehrer) {
-        this.lehrer = klassenlehrer;
+        this.klassenlehrer = klassenlehrer;
     }
 
     @Override
@@ -44,11 +56,11 @@ public class KlasseEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         KlasseEntity that = (KlasseEntity) o;
-        return Objects.equals(klassenname, that.klassenname) && Objects.equals(lehrer, that.lehrer);
+        return Objects.equals(klassenname, that.klassenname) && Objects.equals(klassenlehrer, that.klassenlehrer);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(klassenname, lehrer);
+        return Objects.hash(klassenname, klassenlehrer);
     }
 }

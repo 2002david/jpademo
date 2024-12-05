@@ -26,6 +26,13 @@ public class LehrerEntity {
             joinColumns = @JoinColumn(name = "person_id"),
             inverseJoinColumns = @JoinColumn(name = "fach_id"))
     private List<FachEntity> faecher;
+    @ManyToMany
+    @Column(name = "klasse")
+    @JoinTable(name = "unterrichtet_klassen",
+            joinColumns = @JoinColumn(name = "person_id"),
+            inverseJoinColumns = @JoinColumn(name = "klasse_id"))
+    private List<KlasseEntity> klassen;
+
 
     public Double getGehalt() {
         return gehalt;

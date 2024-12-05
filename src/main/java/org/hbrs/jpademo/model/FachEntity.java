@@ -21,6 +21,10 @@ public class FachEntity {
     @Column(name = "lehrer")
     private List<LehrerEntity> lehrer;
 
+    @ManyToMany(mappedBy="faecher")
+    @Column(name="klassen")
+    private List<KlasseEntity> klassen;
+
     public int getFachId() {
         return fachId;
     }
