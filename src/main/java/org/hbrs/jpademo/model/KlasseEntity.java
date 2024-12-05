@@ -2,6 +2,7 @@ package org.hbrs.jpademo.model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -12,6 +13,10 @@ public class KlasseEntity {
     private String klassenname;
     @Column(name = "klassenlehrer")
     private Integer klassenlehrer;
+    @ManyToMany
+    private List<LehrerEntity> lehrer;
+    @ManyToOne
+    private List<SchuelerEntity> schueler;
 
     public String getKlassenname() {
         return klassenname;

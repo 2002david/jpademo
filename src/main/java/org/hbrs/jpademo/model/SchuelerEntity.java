@@ -15,6 +15,10 @@ public class SchuelerEntity {
     private Date einschulungsjahr;
     @Column(name = "klasse")
     private String klasse;
+    @OneToOne
+    private PersonEntity person;
+    @OneToMany
+    private KlasseEntity klasse;
 
     public int getPersonId() {
         return personId;

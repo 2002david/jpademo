@@ -3,6 +3,7 @@ package org.hbrs.jpademo.model;
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -13,6 +14,14 @@ public class LehrerEntity {
     private int personId;
     @Column(name = "gehalt")
     private BigDecimal gehalt;
+    @OneToOne
+    private PersonEntity person;
+    @OneToOne
+    private KlasseEntity klasse;
+    @ManyToMany(mappedBy = "unterrichtet_klassen")
+    private List<KlasseEntity> klassen;
+    @ManyToMany
+    private List
 
     public int getPersonId() {
         return personId;

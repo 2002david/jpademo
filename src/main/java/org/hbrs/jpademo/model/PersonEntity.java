@@ -3,6 +3,7 @@ package org.hbrs.jpademo.model;
 import jakarta.persistence.*;
 
 import java.sql.Date;
+import java.util.List;
 import java.util.Objects;
 
 @Entity

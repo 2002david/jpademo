@@ -2,6 +2,7 @@ package org.hbrs.jpademo.model;
 
 import jakarta.persistence.*;
 
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -20,6 +21,8 @@ public class AdresseEntity {
     private String ort;
     @Column(name = "person_id")
     private Integer personId;
+    @OneToOne
+    private List<PersonEntity> persons;
 
     public int getAdresseId() {
         return adresseId;
