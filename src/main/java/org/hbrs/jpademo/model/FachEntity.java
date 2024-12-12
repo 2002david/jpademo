@@ -41,16 +41,32 @@ public class FachEntity {
         this.fachname = fachname;
     }
 
+    public List<LehrerEntity> getLehrer() {
+        return lehrer;
+    }
+
+    public void setLehrer(List<LehrerEntity> lehrer) {
+        this.lehrer = lehrer;
+    }
+
+    public List<KlasseEntity> getKlassen() {
+        return klassen;
+    }
+
+    public void setKlassen(List<KlasseEntity> klassen) {
+        this.klassen = klassen;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         FachEntity that = (FachEntity) o;
-        return fachId == that.fachId && Objects.equals(fachname, that.fachname);
+        return fachId == that.fachId && Objects.equals(fachname, that.fachname) && Objects.equals(lehrer, that.lehrer) && Objects.equals(klassen, that.klassen);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(fachId, fachname);
+        return Objects.hash(fachId, fachname, lehrer, klassen);
     }
 }

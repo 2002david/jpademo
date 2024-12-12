@@ -19,6 +19,14 @@ public class SchuelerEntity {
     @ManyToOne
     private KlasseEntity klasse;
 
+    public PersonEntity getPerson() {
+        return person;
+    }
+
+    public void setPerson(PersonEntity person) {
+        this.person = person;
+    }
+
     public Date getEinschulungsjahr() {
         return einschulungsjahr;
     }
@@ -27,12 +35,20 @@ public class SchuelerEntity {
         this.einschulungsjahr = einschulungsjahr;
     }
 
+    public KlasseEntity getKlasse() {
+        return klasse;
+    }
+
+    public void setKlasse(KlasseEntity klasse) {
+        this.klasse = klasse;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         SchuelerEntity that = (SchuelerEntity) o;
-        return person == that.person && Objects.equals(einschulungsjahr, that.einschulungsjahr) && Objects.equals(klasse, that.klasse);
+        return Objects.equals(person, that.person) && Objects.equals(einschulungsjahr, that.einschulungsjahr) && Objects.equals(klasse, that.klasse);
     }
 
     @Override

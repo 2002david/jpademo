@@ -13,9 +13,9 @@ public class Main {
 
         PersonEntity person = new PersonEntity();
         person.setPersonId(0);
-        person.setVorname("David");
-        person.setNachname("Steglich");
-        person.setGeburtsdatum(java.sql.Date.valueOf("2002-04-14"));
+        person.setVorname("Max");
+        person.setNachname("Mustermann");
+        person.setGeburtsdatum(java.sql.Date.valueOf("1970-01-01"));
 
         personDAO.save(person);
 

@@ -69,12 +69,20 @@ public class AdresseEntity {
         this.ort = ort;
     }
 
+    public List<PersonEntity> getPersonId() {
+        return personId;
+    }
+
+    public void setPersonId(List<PersonEntity> personId) {
+        this.personId = personId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        AdresseEntity that = (AdresseEntity) o;
-        return adresseId == that.adresseId && Objects.equals(strasse, that.strasse) && Objects.equals(hausnr, that.hausnr) && Objects.equals(plz, that.plz) && Objects.equals(ort, that.ort) && Objects.equals(personId, that.personId);
+        AdresseEntity adresse = (AdresseEntity) o;
+        return adresseId == adresse.adresseId && Objects.equals(strasse, adresse.strasse) && Objects.equals(hausnr, adresse.hausnr) && Objects.equals(plz, adresse.plz) && Objects.equals(ort, adresse.ort) && Objects.equals(personId, adresse.personId);
     }
 
     @Override
