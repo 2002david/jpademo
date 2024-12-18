@@ -1,7 +1,6 @@
 package org.hbrs.jpademo;
 
-import org.hbrs.jpademo.dao.PersonDAO;
-import org.hbrs.jpademo.model.PersonEntity;
+import org.hbrs.jpademo.model.Person;
 
 import java.time.LocalDateTime;
 
@@ -9,9 +8,9 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Starting jpademo - " + LocalDateTime.now());
 
-        PersonDAO personDAO = new PersonDAO();
+        DAO<Person> personDAO = new DAO<>(Person.class);
 
-        PersonEntity person = new PersonEntity();
+        Person person = new Person();
         person.setPersonId(0);
         person.setVorname("Max");
         person.setNachname("Mustermann");
@@ -19,7 +18,7 @@ public class Main {
 
         personDAO.save(person);
 
-        PersonEntity savedPerson = personDAO.find(person.getPersonId());
+        Person savedPerson = personDAO.find(person.getPersonId());
         System.out.println(savedPerson.getVorname());
     }
 }

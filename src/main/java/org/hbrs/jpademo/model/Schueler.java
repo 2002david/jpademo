@@ -6,24 +6,22 @@ import java.sql.Date;
 import java.util.Objects;
 
 @Entity
-@Table(name = "schueler", schema = "public", catalog = "dstegl2s")
-public class SchuelerEntity {
+public class Schueler {
 
     @Id
     @OneToOne
-    private PersonEntity person;
+    private Person person;
 
-    @Column(name = "einschulungsjahr")
     private Date einschulungsjahr;
 
     @ManyToOne
-    private KlasseEntity klasse;
+    private Klasse klasse;
 
-    public PersonEntity getPerson() {
+    public Person getPerson() {
         return person;
     }
 
-    public void setPerson(PersonEntity person) {
+    public void setPerson(Person person) {
         this.person = person;
     }
 
@@ -35,11 +33,11 @@ public class SchuelerEntity {
         this.einschulungsjahr = einschulungsjahr;
     }
 
-    public KlasseEntity getKlasse() {
+    public Klasse getKlasse() {
         return klasse;
     }
 
-    public void setKlasse(KlasseEntity klasse) {
+    public void setKlasse(Klasse klasse) {
         this.klasse = klasse;
     }
 
@@ -47,7 +45,7 @@ public class SchuelerEntity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        SchuelerEntity that = (SchuelerEntity) o;
+        Schueler that = (Schueler) o;
         return Objects.equals(person, that.person) && Objects.equals(einschulungsjahr, that.einschulungsjahr) && Objects.equals(klasse, that.klasse);
     }
 

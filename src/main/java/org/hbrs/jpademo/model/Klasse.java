@@ -6,34 +6,29 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name = "klasse", schema = "public", catalog = "dstegl2s")
-public class KlasseEntity {
+public class Klasse {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int klassenId;
 
-    @Column(name = "klassenname")
     private String klassenname;
 
-
     @ManyToMany(mappedBy = "klassen")
-    @Column(name="lehrer")
-    private List<LehrerEntity> lehrer;
+    private List<Lehrer> lehrer;
 
     @ManyToMany
-    @Column(name = "faecher")
     @JoinTable(name = "hat_faecher",
         joinColumns = @JoinColumn(name ="klasse_id"),
         inverseJoinColumns = @JoinColumn(name = "fach_id"))
-    private List<FachEntity> faecher;
+    private List<Fach> faecher;
 
     @OneToOne
-    private LehrerEntity klassenlehrer;
+    private Lehrer klassenlehrer;
 
     @OneToMany(mappedBy = "klasse")
-    private List<SchuelerEntity> schueler;
+    private List<Schueler> schueler;
 
     public int getKlassenId() {
         return klassenId;
@@ -51,35 +46,35 @@ public class KlasseEntity {
         this.klassenname = klassenname;
     }
 
-    public List<LehrerEntity> getLehrer() {
+    public List<Lehrer> getLehrer() {
         return lehrer;
     }
 
-    public void setLehrer(List<LehrerEntity> lehrer) {
+    public void setLehrer(List<Lehrer> lehrer) {
         this.lehrer = lehrer;
     }
 
-    public List<FachEntity> getFaecher() {
+    public List<Fach> getFaecher() {
         return faecher;
     }
 
-    public void setFaecher(List<FachEntity> faecher) {
+    public void setFaecher(List<Fach> faecher) {
         this.faecher = faecher;
     }
 
-    public LehrerEntity getKlassenlehrer() {
+    public Lehrer getKlassenlehrer() {
         return klassenlehrer;
     }
 
-    public void setKlassenlehrer(LehrerEntity klassenlehrer) {
+    public void setKlassenlehrer(Lehrer klassenlehrer) {
         this.klassenlehrer = klassenlehrer;
     }
 
-    public List<SchuelerEntity> getSchueler() {
+    public List<Schueler> getSchueler() {
         return schueler;
     }
 
-    public void setSchueler(List<SchuelerEntity> schueler) {
+    public void setSchueler(List<Schueler> schueler) {
         this.schueler = schueler;
     }
 
@@ -87,7 +82,7 @@ public class KlasseEntity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        KlasseEntity that = (KlasseEntity) o;
+        Klasse that = (Klasse) o;
         return klassenId == that.klassenId && Objects.equals(klassenname, that.klassenname) && Objects.equals(lehrer, that.lehrer) && Objects.equals(faecher, that.faecher) && Objects.equals(klassenlehrer, that.klassenlehrer) && Objects.equals(schueler, that.schueler);
     }
 

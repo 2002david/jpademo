@@ -6,24 +6,20 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name = "fach", schema = "public", catalog = "dstegl2s")
-public class FachEntity {
+public class Fach {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int fachId;
 
-    @Column(name = "fachname")
     private String fachname;
 
     @ManyToMany(mappedBy = "faecher")
-    @Column(name = "lehrer")
-    private List<LehrerEntity> lehrer;
+    private List<Lehrer> lehrer;
 
     @ManyToMany(mappedBy="faecher")
-    @Column(name="klassen")
-    private List<KlasseEntity> klassen;
+    private List<Klasse> klassen;
 
     public int getFachId() {
         return fachId;
@@ -41,19 +37,19 @@ public class FachEntity {
         this.fachname = fachname;
     }
 
-    public List<LehrerEntity> getLehrer() {
+    public List<Lehrer> getLehrer() {
         return lehrer;
     }
 
-    public void setLehrer(List<LehrerEntity> lehrer) {
+    public void setLehrer(List<Lehrer> lehrer) {
         this.lehrer = lehrer;
     }
 
-    public List<KlasseEntity> getKlassen() {
+    public List<Klasse> getKlassen() {
         return klassen;
     }
 
-    public void setKlassen(List<KlasseEntity> klassen) {
+    public void setKlassen(List<Klasse> klassen) {
         this.klassen = klassen;
     }
 
@@ -61,7 +57,7 @@ public class FachEntity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        FachEntity that = (FachEntity) o;
+        Fach that = (Fach) o;
         return fachId == that.fachId && Objects.equals(fachname, that.fachname) && Objects.equals(lehrer, that.lehrer) && Objects.equals(klassen, that.klassen);
     }
 

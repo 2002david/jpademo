@@ -3,29 +3,24 @@ package org.hbrs.jpademo.model;
 import jakarta.persistence.*;
 
 import java.sql.Date;
-import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name = "person", schema = "public", catalog = "dstegl2s")
-public class PersonEntity {
+public class Person {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int personId;
 
-    @Column(name = "vorname")
     private String vorname;
 
-    @Column(name = "nachname")
     private String nachname;
 
-    @Column(name = "geburtsdatum")
     private Date geburtsdatum;
 
     @ManyToOne
-    private AdresseEntity adresse;
+    private Adresse adresse;
 
     public int getPersonId() {
         return personId;
@@ -59,11 +54,11 @@ public class PersonEntity {
         this.geburtsdatum = geburtsdatum;
     }
 
-    public AdresseEntity getAdresse() {
+    public Adresse getAdresse() {
         return adresse;
     }
 
-    public void setAdresse(AdresseEntity adresse) {
+    public void setAdresse(Adresse adresse) {
         this.adresse = adresse;
     }
 
@@ -71,7 +66,7 @@ public class PersonEntity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        PersonEntity that = (PersonEntity) o;
+        Person that = (Person) o;
         return personId == that.personId && Objects.equals(vorname, that.vorname) && Objects.equals(nachname, that.nachname) && Objects.equals(geburtsdatum, that.geburtsdatum) && Objects.equals(adresse, that.adresse);
     }
 

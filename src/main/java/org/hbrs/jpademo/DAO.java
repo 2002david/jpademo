@@ -1,30 +1,32 @@
-package org.hbrs.jpademo.dao;
+package org.hbrs.jpademo;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
-import org.hbrs.jpademo.model.SchuelerEntity;
 
-public class SchuelerDAO {
+public class DAO<T> {
 
-    private EntityManagerFactory emf;
+    private final EntityManagerFactory emf;
+    private final Class<T> type;
 
-    public SchuelerDAO() {
+    public DAO(Class<T> type) {
         this.emf = Persistence.createEntityManagerFactory("jpademo");
+        this.type = type;
     }
 
-    public void save(SchuelerEntity schueler) {
+    public void save(T t) {
         EntityManager em = emf.createEntityManager();
         em.getTransaction().begin();
-        em.persist(schueler);
+        em.persist(t);
         em.getTransaction().commit();
         em.close();
     }
 
-    public SchuelerEntity find(int id) {
+    public T find(int id) {
         EntityManager em = emf.createEntityManager();
-        SchuelerEntity schueler = em.find(SchuelerEntity.class, id);
+        T t = em.find(type, id);
         em.close();
-        return schueler;
+        return t;
     }
+
 }

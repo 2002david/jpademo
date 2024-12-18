@@ -6,28 +6,23 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name = "adresse", schema = "public", catalog = "dstegl2s")
-public class AdresseEntity {
+public class Adresse {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int adresseId;
 
-    @Column(name = "strasse")
     private String strasse;
 
-    @Column(name = "hausnr")
     private String hausnr;
 
-    @Column(name = "plz")
     private String plz;
 
-    @Column(name = "ort")
     private String ort;
 
     @OneToMany(mappedBy = "personId")
-    private List<PersonEntity> personId;
+    private List<Person> personId;
 
     public int getAdresseId() {
         return adresseId;
@@ -69,11 +64,11 @@ public class AdresseEntity {
         this.ort = ort;
     }
 
-    public List<PersonEntity> getPersonId() {
+    public List<Person> getPersonId() {
         return personId;
     }
 
-    public void setPersonId(List<PersonEntity> personId) {
+    public void setPersonId(List<Person> personId) {
         this.personId = personId;
     }
 
@@ -81,7 +76,7 @@ public class AdresseEntity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        AdresseEntity adresse = (AdresseEntity) o;
+        Adresse adresse = (Adresse) o;
         return adresseId == adresse.adresseId && Objects.equals(strasse, adresse.strasse) && Objects.equals(hausnr, adresse.hausnr) && Objects.equals(plz, adresse.plz) && Objects.equals(ort, adresse.ort) && Objects.equals(personId, adresse.personId);
     }
 

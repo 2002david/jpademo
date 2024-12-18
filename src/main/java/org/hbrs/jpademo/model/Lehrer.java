@@ -2,43 +2,38 @@ package org.hbrs.jpademo.model;
 
 import jakarta.persistence.*;
 
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table(name = "lehrer", schema = "public", catalog = "dstegl2s")
-public class LehrerEntity {
+public class Lehrer {
 
     @Id
     @OneToOne
-    private PersonEntity person;
+    private Person person;
 
-    @Column(name = "gehalt")
     private Double gehalt;
 
     @OneToOne
-    private KlasseEntity klasse;
+    private Klasse klasse;
 
     @ManyToMany
-    @Column(name = "faecher")
     @JoinTable(name = "unterrichtet_fach",
             joinColumns = @JoinColumn(name = "person_id"),
             inverseJoinColumns = @JoinColumn(name = "fach_id"))
-    private List<FachEntity> faecher;
+    private List<Fach> faecher;
 
     @ManyToMany
-    @Column(name = "klasse")
     @JoinTable(name = "unterrichtet_klassen",
             joinColumns = @JoinColumn(name = "person_id"),
             inverseJoinColumns = @JoinColumn(name = "klasse_id"))
-    private List<KlasseEntity> klassen;
+    private List<Klasse> klassen;
 
-    public PersonEntity getPerson() {
+    public Person getPerson() {
         return person;
     }
 
-    public void setPerson(PersonEntity person) {
+    public void setPerson(Person person) {
         this.person = person;
     }
 
@@ -50,27 +45,27 @@ public class LehrerEntity {
         this.gehalt = gehalt;
     }
 
-    public KlasseEntity getKlasse() {
+    public Klasse getKlasse() {
         return klasse;
     }
 
-    public void setKlasse(KlasseEntity klasse) {
+    public void setKlasse(Klasse klasse) {
         this.klasse = klasse;
     }
 
-    public List<FachEntity> getFaecher() {
+    public List<Fach> getFaecher() {
         return faecher;
     }
 
-    public void setFaecher(List<FachEntity> faecher) {
+    public void setFaecher(List<Fach> faecher) {
         this.faecher = faecher;
     }
 
-    public List<KlasseEntity> getKlassen() {
+    public List<Klasse> getKlassen() {
         return klassen;
     }
 
-    public void setKlassen(List<KlasseEntity> klassen) {
+    public void setKlassen(List<Klasse> klassen) {
         this.klassen = klassen;
     }
 
@@ -78,7 +73,7 @@ public class LehrerEntity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        LehrerEntity that = (LehrerEntity) o;
+        Lehrer that = (Lehrer) o;
         return Objects.equals(person, that.person) && Objects.equals(gehalt, that.gehalt) && Objects.equals(klasse, that.klasse) && Objects.equals(faecher, that.faecher) && Objects.equals(klassen, that.klassen);
     }
 
