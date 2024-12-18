@@ -3,12 +3,12 @@
              xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_1.xsd"
              version="3.1">
     <persistence-unit name="jpademo" transaction-type="RESOURCE_LOCAL">
-        <class>org.hbrs.jpademo.model.AdresseEntity</class>
-        <class>org.hbrs.jpademo.model.SchuelerEntity</class>
-        <class>org.hbrs.jpademo.model.FachEntity</class>
-        <class>org.hbrs.jpademo.model.KlasseEntity</class>
-        <class>org.hbrs.jpademo.model.LehrerEntity</class>
-        <class>org.hbrs.jpademo.model.PersonEntity</class>
+        <class>org.hbrs.jpademo.model.Adresse</class>
+        <class>org.hbrs.jpademo.model.Schueler</class>
+        <class>org.hbrs.jpademo.model.Fach</class>
+        <class>org.hbrs.jpademo.model.Klasse</class>
+        <class>org.hbrs.jpademo.model.Lehrer</class>
+        <class>org.hbrs.jpademo.model.Person</class>
         <properties>
             <!-- Connection -->
             <property name="jakarta.persistence.jdbc.url" value="${DB_URL}"/>
