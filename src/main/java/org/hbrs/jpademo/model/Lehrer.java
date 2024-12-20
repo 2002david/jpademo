@@ -6,11 +6,8 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-public class Lehrer {
-
-    @Id
-    @OneToOne
-    private Person person;
+@PrimaryKeyJoinColumn(name = "id")
+public class Lehrer extends Person {
 
     private Double gehalt;
 
@@ -28,14 +25,6 @@ public class Lehrer {
             joinColumns = @JoinColumn(name = "person_id"),
             inverseJoinColumns = @JoinColumn(name = "klasse_id"))
     private List<Klasse> klassen;
-
-    public Person getPerson() {
-        return person;
-    }
-
-    public void setPerson(Person person) {
-        this.person = person;
-    }
 
     public Double getGehalt() {
         return gehalt;
@@ -69,16 +58,4 @@ public class Lehrer {
         this.klassen = klassen;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Lehrer that = (Lehrer) o;
-        return Objects.equals(person, that.person) && Objects.equals(gehalt, that.gehalt) && Objects.equals(klasse, that.klasse) && Objects.equals(faecher, that.faecher) && Objects.equals(klassen, that.klassen);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(person, gehalt, klasse, faecher, klassen);
-    }
 }

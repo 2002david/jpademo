@@ -2,11 +2,13 @@ package org.hbrs.jpademo.model;
 
 import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.sql.Date;
 import java.util.Objects;
 
 @Entity
-public class Person {
+@Inheritance(strategy = InheritanceType.JOINED)
+public class Person implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
