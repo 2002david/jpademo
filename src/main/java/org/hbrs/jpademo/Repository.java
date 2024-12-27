@@ -1,19 +1,18 @@
 package org.hbrs.jpademo;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.TypedQuery;
-import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.*;
+
 import java.util.List;
 
 public class Repository<T> {
 
-    @PersistenceContext
-    private EntityManager em;
+    private final EntityManagerFactory emf;
 
-    private final Class<T> entityType;
+    private final Class<T> type;
 
-    public Repository(Class<T> entityType) {
-        this.entityType = entityType;
+    public Repository(Class<T> type) {
+        this.type = type;
+        this.emf = Persistence.createEntityManagerFactory("jpademo");
     }
 
     /**
@@ -23,8 +22,9 @@ public class Repository<T> {
      * @return Liste der Datensätze
      */
     public List<T> findByField(String fieldName, Object value) {
-        String jpql = "SELECT e FROM " + entityType.getSimpleName() + " e WHERE e." + fieldName + " = :value"; //TODO SQL Injection fix
-        TypedQuery<T> query = em.createQuery(jpql, entityType);
+        EntityManager em = emf.createEntityManager();
+        String jpql = "SELECT e FROM " + type.getSimpleName() + " e WHERE e." + fieldName + " = :value"; //TODO SQL Injection fix
+        TypedQuery<T> query = em.createQuery(jpql, type);
         query.setParameter("value", value);
         return query.getResultList();
     }
@@ -34,8 +34,9 @@ public class Repository<T> {
      * @return Liste aller Datensätze
      */
     public List<T> findAll() {
-        String jpql = "SELECT e FROM " + entityType.getSimpleName() + " e";
-        TypedQuery<T> query = em.createQuery(jpql, entityType);
+        EntityManager em = emf.createEntityManager();
+        String jpql = "SELECT e FROM " + type.getSimpleName() + " e";
+        TypedQuery<T> query = em.createQuery(jpql, type);
         return query.getResultList();
     }
 
@@ -45,7 +46,8 @@ public class Repository<T> {
      * @return Datensatz
      */
     public T findById(Object id) {
-        return em.find(entityType, id);
+        EntityManager em = emf.createEntityManager();
+        return em.find(type, id);
     }
 
     /**
@@ -53,8 +55,9 @@ public class Repository<T> {
      * @param id ID des Lehrers
      */
     public T findLehrerAdresse(int id) {
+        EntityManager em = emf.createEntityManager();
         String jpql = "SELECT a FROM Adresse a WHERE a.adresseId.personId = :id";
-        TypedQuery<T> query = em.createQuery(jpql, entityType);
+        TypedQuery<T> query = em.createQuery(jpql, type);
         query.setParameter("id", id);
         return query.getSingleResult();
     }
@@ -64,6 +67,7 @@ public class Repository<T> {
      * @param entity Datensatz
      */
     public void save(T entity) {
+        EntityManager em = emf.createEntityManager();
         if (em.contains(entity)) {
             em.merge(entity);
         } else {
