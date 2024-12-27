@@ -9,6 +9,7 @@
         <class>org.hbrs.jpademo.model.Klasse</class>
         <class>org.hbrs.jpademo.model.Lehrer</class>
         <class>org.hbrs.jpademo.model.Person</class>
+        <class>org.hbrs.jpademo.model.Unterrichtet_Klasse</class>
         <properties>
             <!-- Connection -->
             <property name="jakarta.persistence.jdbc.url" value="${DB_URL}"/>

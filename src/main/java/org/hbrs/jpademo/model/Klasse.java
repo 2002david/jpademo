@@ -15,8 +15,6 @@ public class Klasse {
 
     private String klassenname;
 
-    @ManyToMany(mappedBy = "klassen")
-    private List<Lehrer> lehrer;
 
     @ManyToMany
     @JoinTable(name = "hat_faecher",
@@ -29,6 +27,9 @@ public class Klasse {
 
     @OneToMany(mappedBy = "klasse")
     private List<Schueler> schueler;
+
+    @OneToMany(mappedBy = "klasse")
+    private List<Unterrichtet_Klasse> unterrichtet_von;
 
     public int getKlassenId() {
         return klassenId;
@@ -44,14 +45,6 @@ public class Klasse {
 
     public void setKlassenname(String klassenname) {
         this.klassenname = klassenname;
-    }
-
-    public List<Lehrer> getLehrer() {
-        return lehrer;
-    }
-
-    public void setLehrer(List<Lehrer> lehrer) {
-        this.lehrer = lehrer;
     }
 
     public List<Fach> getFaecher() {
@@ -83,11 +76,11 @@ public class Klasse {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Klasse that = (Klasse) o;
-        return klassenId == that.klassenId && Objects.equals(klassenname, that.klassenname) && Objects.equals(lehrer, that.lehrer) && Objects.equals(faecher, that.faecher) && Objects.equals(klassenlehrer, that.klassenlehrer) && Objects.equals(schueler, that.schueler);
+        return klassenId == that.klassenId && Objects.equals(klassenname, that.klassenname) && Objects.equals(faecher, that.faecher) && Objects.equals(klassenlehrer, that.klassenlehrer) && Objects.equals(schueler, that.schueler);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(klassenId, klassenname, lehrer, faecher, klassenlehrer, schueler);
+        return Objects.hash(klassenId, klassenname, faecher, klassenlehrer, schueler);
     }
 }
