@@ -37,9 +37,10 @@ public class Main {
         // create Schueler via DAO
         Schueler schueler = new Schueler();
         schueler.setVorname("Erika");
-        schueler.setNachname("Musterman");
-        schueler.setGeburtsdatum(java.sql.Date.valueOf("1970-01-03"));
-        schueler.setEinschulungsjahr(java.sql.Date.valueOf("1976-01-02"));
+        schueler.setNachname("Mustermann");
+        schueler.setGeburtsdatum(java.sql.Date.valueOf("1980-01-03"));
+        schueler.setEinschulungsjahr(java.sql.Date.valueOf("1986-01-02"));
+        schueler.setAdresse(adresse);
 
         schuelerDAO.save(schueler);
 
