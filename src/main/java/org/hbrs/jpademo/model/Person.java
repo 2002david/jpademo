@@ -15,6 +15,7 @@ public class Person implements Serializable {
     @Column(name = "id")
     private int personId;
 
+
     private String vorname;
 
     private String nachname;
