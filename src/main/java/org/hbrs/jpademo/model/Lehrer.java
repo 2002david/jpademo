@@ -10,7 +10,6 @@ import java.util.Objects;
 public class Lehrer extends Person {
 
     private Double gehalt;
-    private int schulleiterId;
 
     @OneToOne
     private Klasse klasse;
@@ -21,11 +20,6 @@ public class Lehrer extends Person {
             inverseJoinColumns = @JoinColumn(name = "fach_id"))
     private List<Fach> faecher;
 
-    @ManyToMany
-    @JoinTable(name = "unterrichtet_klassen",
-            joinColumns = @JoinColumn(name = "person_id"),
-            inverseJoinColumns = @JoinColumn(name = "klasse_id"))
-    private List<Klasse> klassen;
 
     @OneToMany(mappedBy = "lehrer")
     private List<Unterrichtet_Klasse> unterrichtet_klassen;
@@ -33,8 +27,6 @@ public class Lehrer extends Person {
     @ManyToOne
     private Lehrer schulleiter;
 
-    @OneToMany(mappedBy = "schulleiter")
-    private List<Lehrer> untergebene_lehrer;
 
     public Double getGehalt() {
         return gehalt;
@@ -60,12 +52,6 @@ public class Lehrer extends Person {
         this.faecher = faecher;
     }
 
-    public List<Klasse> getKlassen() {
-        return klassen;
-    }
 
-    public void setKlassen(List<Klasse> klassen) {
-        this.klassen = klassen;
-    }
 
 }

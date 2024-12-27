@@ -2,6 +2,7 @@ package org.hbrs.jpademo.model;
 
 import jakarta.persistence.*;
 
+@Entity
 public class Unterrichtet_Klasse {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,14 +16,16 @@ public class Unterrichtet_Klasse {
     @JoinColumn(name ="klasse_id")
     private Klasse klasse;
 
-    private String fachname;
+    @ManyToOne
+    @JoinColumn(name ="fach_id")
+    private Fach fach;
 
     public Unterrichtet_Klasse() {}
 
-    public Unterrichtet_Klasse(Lehrer lehrer, Klasse klasse, String fachname) {
+    public Unterrichtet_Klasse(Lehrer lehrer, Klasse klasse, Fach fach) {
         this.lehrer = lehrer;
         this.klasse = klasse;
-        this.fachname = fachname;
+        this.fach = fach;
     }
 
     public int getUnterrichtet_fach_id() {
@@ -44,11 +47,11 @@ public class Unterrichtet_Klasse {
     public void setKlasse(Klasse klasse) {
         this.klasse = klasse;
     }
-    public String getFachname() {
-        return fachname;
+    public Fach getFach() {
+        return fach;
     }
-    public void setFachname(String fachname) {
-        this.fachname = fachname;
+    public void setFach(Fach fachname) {
+        this.fach = fach;
     }
 
 }

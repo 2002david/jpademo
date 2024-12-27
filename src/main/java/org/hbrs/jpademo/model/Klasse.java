@@ -15,8 +15,6 @@ public class Klasse {
 
     private String klassenname;
 
-    @ManyToMany(mappedBy = "klassen")
-    private List<Lehrer> lehrer;
 
     @ManyToMany
     @JoinTable(name = "hat_faecher",
@@ -49,14 +47,6 @@ public class Klasse {
         this.klassenname = klassenname;
     }
 
-    public List<Lehrer> getLehrer() {
-        return lehrer;
-    }
-
-    public void setLehrer(List<Lehrer> lehrer) {
-        this.lehrer = lehrer;
-    }
-
     public List<Fach> getFaecher() {
         return faecher;
     }
@@ -86,11 +76,11 @@ public class Klasse {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Klasse that = (Klasse) o;
-        return klassenId == that.klassenId && Objects.equals(klassenname, that.klassenname) && Objects.equals(lehrer, that.lehrer) && Objects.equals(faecher, that.faecher) && Objects.equals(klassenlehrer, that.klassenlehrer) && Objects.equals(schueler, that.schueler);
+        return klassenId == that.klassenId && Objects.equals(klassenname, that.klassenname) && Objects.equals(faecher, that.faecher) && Objects.equals(klassenlehrer, that.klassenlehrer) && Objects.equals(schueler, that.schueler);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(klassenId, klassenname, lehrer, faecher, klassenlehrer, schueler);
+        return Objects.hash(klassenId, klassenname, faecher, klassenlehrer, schueler);
     }
 }

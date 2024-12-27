@@ -21,6 +21,9 @@ public class Fach {
     @ManyToMany(mappedBy="faecher")
     private List<Klasse> klassen;
 
+    @OneToMany(mappedBy = "fach")
+    private List<Unterrichtet_Klasse> unterrichtet_in_klassen;
+
     public int getFachId() {
         return fachId;
     }
