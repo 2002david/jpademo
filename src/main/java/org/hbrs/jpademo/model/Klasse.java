@@ -30,6 +30,9 @@ public class Klasse {
     @OneToMany(mappedBy = "klasse")
     private List<Schueler> schueler;
 
+    @OneToMany(mappedBy = "klasse")
+    private List<Unterrichtet_Klasse> unterrichtet_von;
+
     public int getKlassenId() {
         return klassenId;
     }

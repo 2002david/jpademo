@@ -10,6 +10,7 @@ import java.util.Objects;
 public class Lehrer extends Person {
 
     private Double gehalt;
+    private int schulleiterId;
 
     @OneToOne
     private Klasse klasse;
@@ -25,6 +26,15 @@ public class Lehrer extends Person {
             joinColumns = @JoinColumn(name = "person_id"),
             inverseJoinColumns = @JoinColumn(name = "klasse_id"))
     private List<Klasse> klassen;
+
+    @OneToMany(mappedBy = "lehrer")
+    private List<Unterrichtet_Klasse> unterrichtet_klassen;
+
+    @ManyToOne
+    private Lehrer schulleiter;
+
+    @OneToMany(mappedBy = "schulleiter")
+    private List<Lehrer> untergebene_lehrer;
 
     public Double getGehalt() {
         return gehalt;
