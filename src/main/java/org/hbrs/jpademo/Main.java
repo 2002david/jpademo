@@ -11,18 +11,9 @@ public class Main {
     public static void main(String[] args) {
         System.out.println("Starting jpademo - " + LocalDateTime.now());
 
-        DAO<Lehrer> lehrerDAO = new DAO<>(Lehrer.class);
         DAO<Adresse> adresseDAO = new DAO<>(Adresse.class);
+        DAO<Lehrer> lehrerDAO = new DAO<>(Lehrer.class);
         DAO<Schueler> schuelerDAO = new DAO<>(Schueler.class);
-
-        // create Lehrer via DAO
-        Lehrer lehrer = new Lehrer();
-        lehrer.setVorname("Max");
-        lehrer.setNachname("Mustermann");
-        lehrer.setGeburtsdatum(java.sql.Date.valueOf("1970-01-02"));
-        lehrer.setGehalt(6000.0);
-
-        lehrerDAO.save(lehrer);
 
         // create Adresse via DAO
         Adresse adresse = new Adresse();
@@ -32,6 +23,16 @@ public class Main {
         adresse.setOrt("Musterstadt");
 
         adresseDAO.save(adresse);
+
+        // create Lehrer via DAO
+        Lehrer lehrer = new Lehrer();
+        lehrer.setVorname("Max");
+        lehrer.setNachname("Mustermann");
+        lehrer.setGeburtsdatum(java.sql.Date.valueOf("1970-01-02"));
+        lehrer.setGehalt(6000.0);
+        lehrer.setAdresse(adresse);
+
+        lehrerDAO.save(lehrer);
 
         // create Schueler via DAO
         Schueler schueler = new Schueler();
