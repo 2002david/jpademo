@@ -27,7 +27,6 @@ public class Lehrer extends Person {
     @ManyToOne
     private Lehrer schulleiter;
 
-
     public Double getGehalt() {
         return gehalt;
     }
@@ -52,6 +51,33 @@ public class Lehrer extends Person {
         this.faecher = faecher;
     }
 
+    public List<Unterrichtet_Klasse> getUnterrichtet_klassen() {
+        return unterrichtet_klassen;
+    }
 
+    public void setUnterrichtet_klassen(List<Unterrichtet_Klasse> unterrichtet_klassen) {
+        this.unterrichtet_klassen = unterrichtet_klassen;
+    }
 
+    public Lehrer getSchulleiter() {
+        return schulleiter;
+    }
+
+    public void setSchulleiter(Lehrer schulleiter) {
+        this.schulleiter = schulleiter;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Lehrer lehrer = (Lehrer) o;
+        return Objects.equals(gehalt, lehrer.gehalt) && Objects.equals(klasse, lehrer.klasse) && Objects.equals(faecher, lehrer.faecher) && Objects.equals(unterrichtet_klassen, lehrer.unterrichtet_klassen) && Objects.equals(schulleiter, lehrer.schulleiter);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), gehalt, klasse, faecher, unterrichtet_klassen, schulleiter);
+    }
 }

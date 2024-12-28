@@ -56,16 +56,24 @@ public class Fach {
         this.klassen = klassen;
     }
 
+    public List<Unterrichtet_Klasse> getUnterrichtet_in_klassen() {
+        return unterrichtet_in_klassen;
+    }
+
+    public void setUnterrichtet_in_klassen(List<Unterrichtet_Klasse> unterrichtet_in_klassen) {
+        this.unterrichtet_in_klassen = unterrichtet_in_klassen;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Fach that = (Fach) o;
-        return fachId == that.fachId && Objects.equals(fachname, that.fachname) && Objects.equals(lehrer, that.lehrer) && Objects.equals(klassen, that.klassen);
+        Fach fach = (Fach) o;
+        return fachId == fach.fachId && Objects.equals(fachname, fach.fachname) && Objects.equals(lehrer, fach.lehrer) && Objects.equals(klassen, fach.klassen) && Objects.equals(unterrichtet_in_klassen, fach.unterrichtet_in_klassen);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(fachId, fachname, lehrer, klassen);
+        return Objects.hash(fachId, fachname, lehrer, klassen, unterrichtet_in_klassen);
     }
 }

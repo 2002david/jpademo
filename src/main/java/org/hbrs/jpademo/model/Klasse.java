@@ -15,7 +15,6 @@ public class Klasse {
 
     private String klassenname;
 
-
     @ManyToMany
     @JoinTable(name = "hat_faecher",
         joinColumns = @JoinColumn(name ="klasse_id"),
@@ -71,16 +70,24 @@ public class Klasse {
         this.schueler = schueler;
     }
 
+    public List<Unterrichtet_Klasse> getUnterrichtet_von() {
+        return unterrichtet_von;
+    }
+
+    public void setUnterrichtet_von(List<Unterrichtet_Klasse> unterrichtet_von) {
+        this.unterrichtet_von = unterrichtet_von;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Klasse that = (Klasse) o;
-        return klassenId == that.klassenId && Objects.equals(klassenname, that.klassenname) && Objects.equals(faecher, that.faecher) && Objects.equals(klassenlehrer, that.klassenlehrer) && Objects.equals(schueler, that.schueler);
+        Klasse klasse = (Klasse) o;
+        return klassenId == klasse.klassenId && Objects.equals(klassenname, klasse.klassenname) && Objects.equals(faecher, klasse.faecher) && Objects.equals(klassenlehrer, klasse.klassenlehrer) && Objects.equals(schueler, klasse.schueler) && Objects.equals(unterrichtet_von, klasse.unterrichtet_von);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(klassenId, klassenname, faecher, klassenlehrer, schueler);
+        return Objects.hash(klassenId, klassenname, faecher, klassenlehrer, schueler, unterrichtet_von);
     }
 }

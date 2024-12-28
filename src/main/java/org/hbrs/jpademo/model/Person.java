@@ -69,8 +69,8 @@ public class Person implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Person that = (Person) o;
-        return personId == that.personId && Objects.equals(vorname, that.vorname) && Objects.equals(nachname, that.nachname) && Objects.equals(geburtsdatum, that.geburtsdatum) && Objects.equals(adresse, that.adresse);
+        Person person = (Person) o;
+        return personId == person.personId && Objects.equals(vorname, person.vorname) && Objects.equals(nachname, person.nachname) && Objects.equals(geburtsdatum, person.geburtsdatum) && Objects.equals(adresse, person.adresse);
     }
 
     @Override

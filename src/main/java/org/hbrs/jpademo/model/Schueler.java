@@ -30,4 +30,17 @@ public class Schueler extends Person {
         this.klasse = klasse;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Schueler schueler = (Schueler) o;
+        return Objects.equals(einschulungsjahr, schueler.einschulungsjahr) && Objects.equals(klasse, schueler.klasse);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), einschulungsjahr, klasse);
+    }
 }
