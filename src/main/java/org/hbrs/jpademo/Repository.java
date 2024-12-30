@@ -17,7 +17,7 @@ public class Repository<T> {
 
     /**
      * Alle Datensätze der Entität mit einer gewissen Eigenschaft finden.
-     * ACHTUNG: Diese Methode ist lediglich eine Testmethode und anfällig für SQL-Injections wegen "fieldname"!
+     * ACHTUNG: Diese Methode ist lediglich eine Testmethode und anfällig für JPQL-Injections wegen "fieldname"!
      * Deswegen sollte diese Methode nicht in produktiven Anwendungen verwendet werden und ist auf private gesetzt.
      * @param fieldName Name des Feldes
      * @param value Wert des Feldes
@@ -72,7 +72,7 @@ public class Repository<T> {
      */
     public T findLehrerAdresse(int id) {
         EntityManager em = emf.createEntityManager();
-        String jpql = "SELECT a FROM Adresse a WHERE a.adresseId = (SELECT p.adresse.adresseId FROM Person p WHERE p.personId = :id)";
+        String jpql = "SELECT a FROM Lehrer l JOIN l.adresse a WHERE l.personId = :id";
         TypedQuery<T> query = em.createQuery(jpql, type);
         query.setParameter("id", id);
         return query.getSingleResult();
