@@ -53,8 +53,22 @@ public class Repository<T> {
     }
 
     /**
-     * Komplexeres Beispiel für eine JPQL-Query (Adresse eines Lehrers finden)
+     * Komplexeres Beispiel für eine JPQL-Query (Schüler einer Klasse finden)
+     * @param klasse Name der Klasse
+     * @return Liste der Schüler
+     */
+    public List<T> findSchuelerFromKlasse(String klasse) {
+        EntityManager em = emf.createEntityManager();
+        String jpql = "SELECT s FROM Schueler s WHERE s.klasse.klassenname = :klasse";
+        TypedQuery<T> query = em.createQuery(jpql, type);
+        query.setParameter("klasse", klasse);
+        return query.getResultList();
+    }
+
+    /**
+     * Zweites komplexeres Beispiel für eine JPQL-Query (Adresse eines Lehrers finden)
      * @param id ID des Lehrers
+     * @return Adresse des Lehrers
      */
     public T findLehrerAdresse(int id) {
         EntityManager em = emf.createEntityManager();

@@ -1,17 +1,16 @@
 package org.hbrs.jpademo;
 
-import org.hbrs.jpademo.model.Adresse;
-import org.hbrs.jpademo.model.Lehrer;
-import org.hbrs.jpademo.model.Person;
-import org.hbrs.jpademo.model.Schueler;
+import org.hbrs.jpademo.model.*;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
         System.out.println("Starting jpademo - " + LocalDateTime.now());
 
         DAO<Adresse> adresseDAO = new DAO<>(Adresse.class);
+        DAO<Klasse> klasseDAO = new DAO<>(Klasse.class);
         DAO<Lehrer> lehrerDAO = new DAO<>(Lehrer.class);
         DAO<Schueler> schuelerDAO = new DAO<>(Schueler.class);
 
@@ -24,6 +23,12 @@ public class Main {
 
         adresseDAO.save(adresse);
 
+        // create Klasse via DAO
+        Klasse klasse = new Klasse();
+        klasse.setKlassenname("10A");
+
+        klasseDAO.save(klasse);
+
         // create Lehrer via DAO
         Lehrer lehrer = new Lehrer();
         lehrer.setVorname("Max");
@@ -31,6 +36,7 @@ public class Main {
         lehrer.setGeburtsdatum(java.sql.Date.valueOf("1970-01-02"));
         lehrer.setGehalt(6000.0);
         lehrer.setAdresse(adresse);
+        lehrer.setKlasse(klasse);
 
         lehrerDAO.save(lehrer);
 
@@ -41,17 +47,28 @@ public class Main {
         schueler.setGeburtsdatum(java.sql.Date.valueOf("1980-01-03"));
         schueler.setEinschulungsjahr(java.sql.Date.valueOf("1986-01-02"));
         schueler.setAdresse(adresse);
+        schueler.setKlasse(klasse);
 
         schuelerDAO.save(schueler);
 
         // find "Lehrer" via JPQL query
         Repository<Lehrer> lehrerRepository = new Repository<>(Lehrer.class);
         Lehrer savedLehrer = lehrerRepository.findById(lehrer.getPersonId());
+        System.out.println("Lehrer:");
         System.out.println(savedLehrer.getVorname());
 
         // find Adresse from "Lehrer" via JPQL query
         Repository<Adresse> adresseRepository = new Repository<>(Adresse.class);
         Adresse savedLehrerAdresse = adresseRepository.findLehrerAdresse(savedLehrer.getPersonId());
+        System.out.println("Adresse von " + savedLehrer.getVorname() + " " + savedLehrer.getNachname() + ":");
         System.out.println(savedLehrerAdresse.getStrasse() + " " + savedLehrerAdresse.getHausnr());
+
+        // find "Schueler" via JPQL query
+        Repository<Schueler> schuelerRepository = new Repository<>(Schueler.class);
+        List<Schueler> savedSchueler = schuelerRepository.findSchuelerFromKlasse("10A");
+        System.out.println("Schüler in Klasse 10A:");
+        for (Schueler s : savedSchueler) {
+            System.out.println(s.getVorname());
+        }
     }
 }
