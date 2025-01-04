@@ -75,7 +75,7 @@ public class Main {
             System.out.println(s.getVorname());
         }
 
-        //find "Schueler" by Address / Named Query
+        //find "Schueler" by address / Named Query
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("jpademo");
         EntityManager entityManager = emf.createEntityManager();
         String strasse = "Musterstraße";
@@ -95,10 +95,32 @@ public class Main {
                 }
             }
 
-        } catch (Exception e) {
-            e.printStackTrace();
-
         }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        //Find "Person" by first name / Named Query
+        String name = "Erika";
+
+        try {
+            List<Person> personen = entityManager.createNamedQuery("Person.findByName", Person.class)
+                    .setParameter("vorname", name)
+                    .getResultList();
+            if (personen.isEmpty()) {
+                System.out.println("Person konnte nicht gefunden werden.");
+            }
+            else {
+                for (Person p : personen) {
+                    System.out.println(p);
+                }
+            }
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
 
 
     }

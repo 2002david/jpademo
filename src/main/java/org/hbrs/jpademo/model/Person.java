@@ -8,7 +8,7 @@ import java.util.Objects;
 
 @Entity
 @NamedQueries({
-        @NamedQuery(name = "Person.findByName", query="SELECT p FROM Person p WHERE p.vorname = :vorname AND p.nachname = :nachname"),
+        @NamedQuery(name = "Person.findByName", query="SELECT p FROM Person p WHERE p.vorname = :vorname"),
 })
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Person implements Serializable {
