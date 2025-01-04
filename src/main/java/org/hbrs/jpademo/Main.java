@@ -75,32 +75,31 @@ public class Main {
             System.out.println(s.getVorname());
         }
 
-        //find "Schueler" by address / Named Query
+        // find "Schueler" by address / Named Query
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("jpademo");
         EntityManager entityManager = emf.createEntityManager();
         String strasse = "Musterstraße";
         String hausnr = "1";
 
         try {
-            List<Schueler> schuelers = entityManager.createNamedQuery("Schueler.findByAddress", Schueler.class)
+            List<Schueler> schuelerByAddress = entityManager.createNamedQuery("Schueler.findByAddress", Schueler.class)
                     .setParameter("strasse", strasse)
                     .setParameter("hausnr", hausnr)
                     .getResultList();
 
-            if (schuelers.isEmpty()) {
+            if (schuelerByAddress.isEmpty()) {
                 System.out.println("Schueler konnte nicht gefunden werden.");
             } else {
-                for (Schueler s : schuelers) {
+                System.out.println("Schueler mit Adresse " + strasse + " " + hausnr + ":");
+                for (Schueler s : schuelerByAddress) {
                     System.out.println(s.getVorname() + " " + s.getNachname());
                 }
             }
-
-        }
-        catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            System.out.println("ERROR: " + e.getMessage());
         }
 
-        //Find "Person" by first name / Named Query
+        // find "Person" by first name / Named Query
         String name = "Erika";
 
         try {
@@ -109,19 +108,15 @@ public class Main {
                     .getResultList();
             if (personen.isEmpty()) {
                 System.out.println("Person konnte nicht gefunden werden.");
-            }
-            else {
+            } else {
+                System.out.println("Personen mit Vorname " + name + ":");
                 for (Person p : personen) {
                     System.out.println(p);
                 }
             }
+        } catch (Exception e) {
+            System.out.println("ERROR: " + e.getMessage());
         }
-        catch (Exception e) {
-            e.printStackTrace();
-        }
-
-
-
 
     }
 }
