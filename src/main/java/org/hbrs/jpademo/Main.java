@@ -76,7 +76,7 @@ public class Main {
         }
 
         //find "Person" by Adress / Named Query
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory("my-persistence-unit");
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("jpademo");
         EntityManager entityManager = emf.createEntityManager();
         String strasse = "Musterstraße";
         String hausnr = "1";
@@ -91,7 +91,7 @@ public class Main {
                 System.out.println("Person konnte nicht gefunden werden.");
             } else {
                 for (Person p : personen) {
-                    System.out.println(p.getVorname() + " " + p.getNachname());
+                    System.out.println(p);
                 }
             }
 
