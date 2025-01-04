@@ -1,7 +1,11 @@
 package org.hbrs.jpademo;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.Persistence;
 import org.hbrs.jpademo.model.*;
 
+import java.sql.Date;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -33,7 +37,7 @@ public class Main {
         Lehrer lehrer = new Lehrer();
         lehrer.setVorname("Max");
         lehrer.setNachname("Mustermann");
-        lehrer.setGeburtsdatum(java.sql.Date.valueOf("1970-01-02"));
+        lehrer.setGeburtsdatum(Date.valueOf("1970-01-02"));
         lehrer.setGehalt(6000.0);
         lehrer.setAdresse(adresse);
         lehrer.setKlasse(klasse);
@@ -44,8 +48,8 @@ public class Main {
         Schueler schueler = new Schueler();
         schueler.setVorname("Erika");
         schueler.setNachname("Mustermann");
-        schueler.setGeburtsdatum(java.sql.Date.valueOf("1980-01-03"));
-        schueler.setEinschulungsjahr(java.sql.Date.valueOf("1986-01-02"));
+        schueler.setGeburtsdatum(Date.valueOf("1980-01-03"));
+        schueler.setEinschulungsjahr(Date.valueOf("1986-01-02"));
         schueler.setAdresse(adresse);
         schueler.setKlasse(klasse);
 
@@ -70,5 +74,32 @@ public class Main {
         for (Schueler s : savedSchueler) {
             System.out.println(s.getVorname());
         }
+
+        //find "Schueler" by Address / Named Query
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("jpademo");
+        EntityManager entityManager = emf.createEntityManager();
+        String strasse = "Musterstraße";
+        String hausnr = "1";
+
+        try {
+            List<Schueler> schuelers = entityManager.createNamedQuery("Schueler.findByAddress", Schueler.class)
+                    .setParameter("strasse", strasse)
+                    .setParameter("hausnr", hausnr)
+                    .getResultList();
+
+            if (schuelers.isEmpty()) {
+                System.out.println("Schueler konnte nicht gefunden werden.");
+            } else {
+                for (Schueler s : schuelers) {
+                    System.out.println(s.getVorname() + " " + s.getNachname());
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+
+
     }
 }

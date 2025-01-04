@@ -7,6 +7,10 @@ import java.util.Objects;
 
 @Entity
 @PrimaryKeyJoinColumn(name = "id")
+@NamedQueries({
+        @NamedQuery(name = "Schueler.findAll", query = "SELECT s FROM Schueler s"),
+        @NamedQuery(name = "Schueler.findByAddress", query = "SELECT s FROM Schueler s WHERE s.adresse.strasse = :strasse AND s.adresse.hausnr = :hausnr")
+})
 public class Schueler extends Person {
 
     private Date einschulungsjahr;
