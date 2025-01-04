@@ -75,7 +75,7 @@ public class Main {
             System.out.println(s.getVorname());
         }
 
-        //find "Schueler" by Adress / Named Query
+        //find "Schueler" by Address / Named Query
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("jpademo");
         EntityManager entityManager = emf.createEntityManager();
         String strasse = "Musterstraße";
